@@ -1,0 +1,114 @@
+body {
+  margin: 0px;
+}
+
+.privacy-policy-container,
+.legal-notice-container {
+  padding-top: 40px;
+  padding-left: 80px;
+  padding-right: 80px;
+  font-family: "Montserrat";
+  background-color: #fffff4;
+}
+.legal-notice-container img {
+  border-radius: -15px;
+  width: 70px;
+  height: 70px;
+  rotate: 135deg;
+}
+.legal-notice-container:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.legal-notice-container h1 {
+  font-size: 58px;
+  font-weight: 800;
+}
+
+.privacy-policy-container h1 {
+  font-size: 58px;
+  font-weight: 800;
+}
+
+.legal-notice-container h2 {
+  font-size: 46px;
+  color: #5c5c5c;
+}
+
+.privacy-policy-container h2 {
+  font-size: 46px;
+  color: #5c5c5c;
+}
+
+.legal-notice-container p {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.privacy-policy-container p {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.privacy-policy-container a {
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  color: black;
+}
+
+.privacy-policy-container,
+.legal-notice-container a {
+  color: #5c5c5c;
+}
+
+img {
+  border-radius: -15px;
+
+  width: 70px;
+  height: 70px;
+  rotate: 135deg;
+}
+img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+@media (max-width: 555px) {
+  .legal-notice-container h1 {
+    font-size: 36px;
+    font-weight: 800;
+  }
+
+  .privacy-policy-container h1 {
+    font-size: 36px;
+    font-weight: 800;
+  }
+
+  .privacy-policy-container h2 {
+    font-size: 26px;
+    color: #5c5c5c;
+  }
+
+  .legal-notice-container h2 {
+    font-size: 26px;
+    color: #5c5c5c;
+  }
+
+  .privacy-policy-container p {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .legal-notice-container p {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .privacy-policy-container a {
+    cursor: pointer;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mobile.css">
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="icon" type="image/png" href="./assets/icon/icons/fav-icon.png">
+    <title>Deutscher Wetterdienst</title>
+
+    <script src="api-requests.js" defer></script>
+    <script src="ui-handlers.js" defer></script>
+    <script src="script.js" defer></script>
+    
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="main-container">
+        <div class="top-element">
+          <div class="navibar">
+            <img
+              class="left-image"
+              id="alerts"
+              src="./assets/icon/icons/Low Risk.svg"
+              alt=""
+            />
+
+            <div class="search-field">
+              <form action="" class="search" id="search">
+                <input
+                  autocomplete="off"
+                  type="text"
+                  id="query"
+                  placeholder="Search.."
+                />
+                <img id="searchButton" class="search-btn" src="./assets/icon/icons/search-64.png" alt="">
+            
+              </form>
+            </div>
+              <img
+                class="right-image"
+                id="setUserLocation"
+                src="assets/icon/icons/Where.png"
+                alt=""
+              />
+            
+          </div>
+          <div class="negative-border"></div>
+         
+            <div class="top-container">
+              <div class="main-temp">
+              <h1 id="temp">0</h1>
+              <span id="temp-unit-first" class="temp-unit">°C</span>
+            </div>
+            <div class="rain">
+              <img
+                src="assets/icon/icons/Keep Dry-64.png"
+                alt=""
+                style="width: 32px; height: auto"
+              />
+              <p id="rain">perc - 0%</p>
+            </div>
+            </div>
+          </div>
+          <div class="weather-icon">
+            <img src="./assets/icon/icons/sun-64.png" alt="" id="icon" />
+          </div>
+          
+        </div>
+       
+       
+        
+        <div class="main">
+          <div class="location">
+            <div class="location-text">
+              <p id="location">location</p>
+            </div>
+            <div class="location-inverted">
+            </div>
+          </div>
+          
+          <div class="weather-temperature-container">
+           
+            <div class="temprature">
+           
+            </div>
+          </div>
+          <div class="today-week-container">
+            <div class="options">
+              <button class="hourly">Tag</button>
+              <button class="week active">Woche</button>
+            </div>
+            <div class="options units">
+              <button class="celcius active">°C</button>
+              <button class="fahrenheit">°F</button>
+            </div>
+          </div>
+          <div class="cards" id="weather-cards"></div>
+          <div class="brake-line2"></div>
+          <div class="bottom-container">
+            <div class="highlights">
+              <h2 class="heading">Übersicht heute</h2>
+              <div class="cards" id="bottom-info-container">
+                <div class="card2">
+                  <img src="./assets/icon/icons/thermometer-64.png" alt="" />
+                  <h4 class="card-heading">Temp. gefühlt</h4>
+                  <div class="content">
+                    <p class="feels-like">°C</p>
+                    <p class="feels-text">normal</p>
+                  </div>
+                </div>
+                <div class="card2">
+                  <img src="./assets/icon/icons/wind-64.png" alt="" />
+                  <h4 class="card-heading">Wind Status</h4>
+                  <div class="content">
+                    <p class="wind-speed">Km/h</p>
+                    <p class="">gering</p>
+                  </div>
+                </div>
+                <div class="card2">
+                  <img src="./assets/icon/icons/sunset-64.png" alt="" />
+                  <h4 class="card-heading">Sonnenuntergang</h4>
+                  <div class="content">
+                    <p class="sunset">0</p>
+                    <p class="sunrise">0</p>
+                  </div>
+                </div>
+                <div class="card2">
+                  <img src="./assets/icon/icons/clouds-64.png" alt="" />
+                  <h4 class="card-heading">Himmel</h4>
+                  <div class="content">
+                    <p class="cloudcover">%</p>
+                    <p class="cloudcover-status">klar</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer><a href="https://de.linkedin.com/in/sebastian-brosda-b827902a8">
+          <img src="assets/icon/icons/LinkedIn.png"  /></a>
+          <div class="impressum-container">
+            <a href="impressum.html">Impressum</a>
+            <a href="Datenschutz.html">Datenschutz</a>
+          <a href="https://icons8.de/">designs from Icons8</a></div>
+          <a href="https://github.com/brosda90"><img src="assets/icon/icons/GitHub.png"  /></a>
+        </footer>
+      </div>
+    </div>
+    <div id="weatherModal" class="modal" style="display: none">
+      <div class="modal-content">
+        <h2>Wetterwarnungen</h2>
+      </div>
+      <span class="close-button">&times;</span>
+    </div>
+    <div id="locationPermissionModal" class="modal" style="display: none">
+      <div class="modal-content">
+        <h2>Standortzugriff</h2>
+        <p>Möchten Sie Ihren Standort teilen,<br> um lokale Wetterdaten zu erhalten?</p>
+        <button id="agreeLocation">Zustimmen</button>
+        <button id="disagreeLocation">Ablehnen</button>
+      </div>
+    </div>
+    <div id="startOverlay" class="start-overlay">
+      Deutscher <br> Wetterdienst
+    </div>
+
+  </body>
+</html>
