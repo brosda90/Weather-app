@@ -248,13 +248,13 @@ function isNewDay(dayData, currentHour, currentDay) {
  */
 function updatecloudcoverStatus(cloudcover) {
   if (cloudcover < 25) {
-    cloudcoverStatus.innerText = "Klar";
+    cloudcoverStatus.innerText = "klar";
   } else if (cloudcover < 50) {
-    cloudcoverStatus.innerText = "Leicht bewölkt";
+    cloudcoverStatus.innerText = "leicht bewölkt";
   } else if (cloudcover < 75) {
-    cloudcoverStatus.innerText = "Bewölkt";
+    cloudcoverStatus.innerText = "bewölkt";
   } else {
-    cloudcoverStatus.innerText = " Bedeckt";
+    cloudcoverStatus.innerText = " bedeckt";
   }
 }
 
@@ -394,6 +394,24 @@ function measureFeelsLike(feelslike) {
 }
 
 /**
+ * Updates the display to describe how the Windspeed feels like.
+ * @param {number} windSpeed - The 'feels like' wind value.
+ */
+function measureWindSpeed(windSpeed){
+  var windText = document.querySelector(".wind-text");
+  if (windSpeed < 20) {
+    windText.innerText = "leicht";
+  } else if (windSpeed < 50) {
+    windText.innerText = "mäßig";
+  } else if (windSpeed < 70) {
+    windText.innerText = "stark";
+  } else {
+    windText.innerText = "sehr stark";
+  }
+}
+
+
+/**
  * Changes the time span of the weather forecast and updates the display.
  * @param {string} timeSpan - The time span for the forecast ('hourly' or 'week').
  */
@@ -451,15 +469,16 @@ function showPopup(dayData) {
   const popup = document.createElement("div");
   popup.classList.add("popup");
 
-  const precip = dayData.precip * 10;
+  const precip = customRound(dayData.precip * 10);
   const windspeed = customRound(dayData.windspeed);
+  const temp = customRound(dayData.temp);
 
   const content = `
     <h2>${getDayTime(dayData.datetime)}</h2>
-    <p>Temperatur: ${dayData.temp}°C</p>
-    <p>Bedingungen: ${dayData.conditions}</p>
-    <p>Niederschlag: ${precip}%</p>
+    <p>Temperatur: ${temp}°C</p>
     <p>Windgeschwindigkeit: ${windspeed} km/h</p>
+    <p>Niederschlag: ${precip}%</p>
+    <p>Bedingungen: ${dayData.conditions}</p>
     <button onclick="closePopup()">Schließen</button>
   `;
 

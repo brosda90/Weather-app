@@ -90,6 +90,7 @@ function updateWeatherDisplay(
   mainIcon.src = displayData.iconSrc;
 
   measureFeelsLike(currentConditions.feelslike);
+  measureWindSpeed(currentConditions.windspeed);
   updatecloudcoverStatus(currentConditions.cloudcover);
 
   if (forecastType === "hourly") {
@@ -118,7 +119,7 @@ function prepareWeatherDisplayData(
     temperatureUnit === "°C" ? roundedTemp : celsiusToFahrenheit(roundedTemp);
   let cityOnly = weatherData.resolvedAddress.split(",")[0];
   let precipitationText =
-    "Perc : " + Math.round(currentConditions.precip * 100) + "%";
+    "Regen : " + Math.round(currentConditions.precip * 100) + "%";
   let feelsLikeText =
     customRound(currentConditions.feelslike) + temperatureUnit;
   let windSpeedText = Math.round(currentConditions.windspeed) + " km/h";
@@ -143,22 +144,28 @@ function prepareWeatherDisplayData(
 }
 
 /**
- * Ruft den Standort des Benutzers über die IP-Adresse ab.
- * @returns {Promise<string|null>} Ein Promise, das den Stadtnamen oder null im Fehlerfall auflöst.
+ * Uses the IP Geolocation API to determine the user's location and fetch weather data for that location.
  */
-async function getLocationOverIP() {
+async function showPosition() {
   try {
-    const response = await fetch("https://ipapi.co/json/");
-    if (!response.ok) {
-      throw new Error(`HTTP Fehler: ${response.status}`);
-    }
-    const data = await response.json();
-    return data.city;
+    navigator.geolocation.getCurrentPosition(async function(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+      const data = await response.json();
+      const city = data.address.city || data.address.town || data.address.village;
+      if (city) {
+        currentCity = city;
+        saveLocationInLocalStorage(currentCity);
+        getWeatherData(currentCity, currentUnit, hourlyorWeek);
+      }
+    });
   } catch (error) {
-    console.error("Fehler beim Abrufen des Standorts über IP:", error);
-    return null;
+    handleError(error);
   }
 }
+
+
 
 // Additional Note:
 // Different APIs are used in these functions to avoid the costs associated with a single comprehensive API.

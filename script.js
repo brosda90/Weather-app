@@ -108,21 +108,7 @@ function handleError(error) {
   );
 }
 
-/**
- * Verwendet die IP-Geolocation-API, um den Standort des Benutzers zu bestimmen und Wetterdaten für diesen Standort abzurufen.
- */
-async function showPosition() {
-  try {
-    const city = await getLocationOverIP();
-    if (city) {
-      currentCity = city;
-      saveLocationInLocalStorage(currentCity);
-      getWeatherData(currentCity, currentUnit, hourlyorWeek);
-    }
-  } catch (error) {
-    handleError(error);
-  }
-}
+
 
 /**
  * Saves the specified city to local storage.
